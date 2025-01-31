@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<!-- Import tModLoader mod properties -->
 	<Import Project="..\tModLoader.targets" />
@@ -7,10 +7,18 @@
 	<PropertyGroup>
 		
 	</PropertyGroup>
-
-	<!-- References -->
 	<ItemGroup>
-		
+	  <None Remove="Content\Items\Vanity\BearskinHat.png" />
+	  <None Remove="Content\Items\Vanity\BearskinHat_Head.png" />
+	  <None Remove="Content\Items\Vanity\RedcoatShirt.png" />
+	  <None Remove="Content\Items\Vanity\RedcoatShirt_Body.png" />
+	  <None Remove="Content\Items\Vanity\RedcoatTrousers.png" />
+	  <None Remove="Content\Items\Vanity\RedcoatTrousers_Legs.png" />
+	  <None Remove="Content\Items\Vanity\ShakoHat.png" />
+	  <None Remove="Content\Items\Vanity\ShakoHat_Head.png" />
+	  <None Remove="Content\Items\Vanity\TricorneHat.png" />
+	  <None Remove="Content\Items\Vanity\TricorneHat_Head.png" />
 	</ItemGroup>
 
+	<!-- References -->
 </Project>

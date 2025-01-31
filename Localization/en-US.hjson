@@ -1,0 +1,47 @@
+Mods: {
+	BritishInvasion: {
+		Items: {
+			Blunderbuss: {
+				DisplayName: Blunderbuss
+				Tooltip: ""
+			}
+
+			HandMortar: {
+				DisplayName: Hand Mortar
+				Tooltip: Shoots Grenades, Bombs and Dynamite
+			}
+
+			BearskinHat: {
+				DisplayName: Bearskin Hat
+				Tooltip: ""
+			}
+
+			RedcoatShirt: {
+				DisplayName: Redcoat Shirt
+				Tooltip: ""
+			}
+
+			RedcoatTrousers: {
+				DisplayName: Redcoat Trousers
+				Tooltip: ""
+			}
+
+			ShakoHat: {
+				DisplayName: Shako Hat
+				Tooltip: ""
+			}
+
+			TricorneHat: {
+				DisplayName: Tricorne Hat
+				Tooltip: ""
+			}
+
+			BayonetRifle: {
+				DisplayName: Bayonet Rifle
+				Tooltip: ""
+			}
+		}
+
+		Projectiles.BayonetRifleProjectile.DisplayName: Bayonet Rifle Projectile
+	}
+}
