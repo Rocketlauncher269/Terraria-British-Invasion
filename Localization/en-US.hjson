@@ -11,18 +11,30 @@ Mods: {
 				Tooltip: Shoots Grenades, Bombs and Dynamite
 			}
 
+			
+			BayonetRifle: {
+				DisplayName: Bayonet Rifle
+				Tooltip: ""
+			}
+
 			BearskinHat: {
 				DisplayName: Bearskin Hat
 				Tooltip: ""
 			}
 
 			RedcoatShirt: {
-				DisplayName: Redcoat Shirt
+				DisplayName: Redcoat's Shirt
 				Tooltip: ""
 			}
 
+			RedCoat: {
+				Tooltip: ""
+				DisplayName: Redcoat's red coat
+			}
+
+
 			RedcoatTrousers: {
-				DisplayName: Redcoat Trousers
+				DisplayName: Redcoat's Trousers
 				Tooltip: ""
 			}
 
@@ -36,9 +48,14 @@ Mods: {
 				Tooltip: ""
 			}
 
-			BayonetRifle: {
-				DisplayName: Bayonet Rifle
+			PatrioticCoat: {
 				Tooltip: ""
+				DisplayName: Patriotic Coat
+			}
+
+			BicorneHat: {
+				Tooltip: ""
+				DisplayName: Bicorne Hat
 			}
 		}
 

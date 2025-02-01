@@ -9,6 +9,9 @@ namespace BritishInvasion.Content.Items.Vanity
     {
         public override void SetStaticDefaults()
         {
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<BicorneHat>();
+
+            ArmorIDs.Head.Sets.DrawHatHair[EquipLoader.GetEquipSlot(Mod, Name, EquipType.Head)] = true;
         }
 
         public override void SetDefaults()

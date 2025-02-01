@@ -9,6 +9,7 @@ namespace BritishInvasion.Content.Items.Vanity
     {
         public override void SetStaticDefaults()
         {
+            ArmorIDs.Head.Sets.DrawHatHair[EquipLoader.GetEquipSlot(Mod, Name, EquipType.Head)] = true;
         }
 
         public override void SetDefaults()
@@ -18,6 +19,10 @@ namespace BritishInvasion.Content.Items.Vanity
             Item.value = Item.sellPrice(silver: 20);
             Item.rare = ItemRarityID.Green;
             Item.vanity = true;
+        }
+
+        public override void UpdateVanity(Player player)
+        {
         }
 
         public override void AddRecipes()

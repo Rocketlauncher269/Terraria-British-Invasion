@@ -5,10 +5,11 @@ using Terraria.ModLoader;
 namespace BritishInvasion.Content.Items.Vanity
 {
     [AutoloadEquip(EquipType.Body)]
-    public class RedcoatShirt : ModItem
+    public class PatrioticCoat : ModItem
     {
         public override void SetStaticDefaults()
         {
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<RedCoat>();
         }
 
         public override void SetDefaults()

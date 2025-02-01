@@ -10,10 +10,14 @@
 	<ItemGroup>
 	  <None Remove="Content\Items\Vanity\BearskinHat.png" />
 	  <None Remove="Content\Items\Vanity\BearskinHat_Head.png" />
-	  <None Remove="Content\Items\Vanity\RedcoatShirt.png" />
-	  <None Remove="Content\Items\Vanity\RedcoatShirt_Body.png" />
+	  <None Remove="Content\Items\Vanity\BicorneHat.png" />
+	  <None Remove="Content\Items\Vanity\BicorneHat_Head.png" />
+	  <None Remove="Content\Items\Vanity\PatrioticCoat.png" />
+	  <None Remove="Content\Items\Vanity\PatrioticCoat_Body.png" />
+	  <None Remove="Content\Items\Vanity\RedCoat.png" />
 	  <None Remove="Content\Items\Vanity\RedcoatTrousers.png" />
 	  <None Remove="Content\Items\Vanity\RedcoatTrousers_Legs.png" />
+	  <None Remove="Content\Items\Vanity\RedCoat_Body.png" />
 	  <None Remove="Content\Items\Vanity\ShakoHat.png" />
 	  <None Remove="Content\Items\Vanity\ShakoHat_Head.png" />
 	  <None Remove="Content\Items\Vanity\TricorneHat.png" />
