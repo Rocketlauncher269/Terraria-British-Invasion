@@ -57,6 +57,11 @@ Mods: {
 				Tooltip: ""
 				DisplayName: Bicorne Hat
 			}
+
+			CaptainsFlintlockPistol: {
+				DisplayName: Captain's Flintlock Pistol
+				Tooltip: ""
+			}
 		}
 
 		Projectiles.BayonetRifleProjectile.DisplayName: Bayonet Rifle Projectile
