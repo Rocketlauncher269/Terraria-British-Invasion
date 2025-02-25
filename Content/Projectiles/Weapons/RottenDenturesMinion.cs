@@ -75,7 +75,7 @@ namespace BritishInvasion.Content.Projectiles.Weapons
         }
         public override void AI()
         {
-            
+            CheckActive(Main.player[Projectile.owner]);
             if(!init)
             {
                 init=true;
