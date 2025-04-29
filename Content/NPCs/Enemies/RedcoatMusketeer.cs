@@ -6,6 +6,11 @@ using Terraria.DataStructures;
 using Terraria.ModLoader;
 using System.IO;
 using BritishInvasion.Common.Utils;
+using BritishInvasion.Content.Items.Vanity;
+using BritishInvasion.Content.Items.Weapons.Magic;
+using BritishInvasion.Content.Items.Weapons.Summon;
+using BritishInvasion.Content.Items.Weapons.Ranged;
+using Terraria.GameContent.ItemDropRules;
 
 namespace BritishInvasion.Content.NPCs.Enemies
 {
@@ -28,15 +33,29 @@ namespace BritishInvasion.Content.NPCs.Enemies
             NPC.lifeMax = 100;
 
             NPC.HitSound = SoundID.NPCHit1;
-            NPC.DeathSound = SoundID.NPCDeath2;
+            NPC.DeathSound = SoundID.NPCDeath1;
             NPC.knockBackResist = 0.1f;
             NPC.aiStyle = -1;
-
         }
        
         bool Walking=true;
         int shootTimer=0;
         int WalkTimer=0;
+
+        public override void ModifyNPCLoot(NPCLoot loot)
+        {
+            loot.Add(ItemDropRule.Common(ModContent.ItemType<BicorneHat>(), 500));
+            loot.Add(ItemDropRule.Common(ModContent.ItemType<RedCoat>(), 500));
+            loot.Add(ItemDropRule.Common(ModContent.ItemType<RedcoatTrousers>(), 500));
+            loot.Add(ItemDropRule.Common(ModContent.ItemType<BayonetRifle>(), 500));
+            loot.Add(ItemDropRule.Common(ModContent.ItemType<HandMortar>(), 500));
+            loot.Add(ItemDropRule.Common(ModContent.ItemType<Blunderbuss>(), 500));
+            loot.Add(ItemDropRule.Common(ModContent.ItemType<Fife>(), 500));
+            loot.Add(ItemDropRule.Common(ModContent.ItemType<RottenDentures>(), 500));
+            loot.Add(ItemDropRule.Common(ItemID.Teacup, 10));
+            loot.Add(ItemDropRule.Common(ItemID.Grenade, 2));
+        }
+
         public override void AI()
         {
             NPC.TargetClosest(true);
@@ -73,9 +92,6 @@ namespace BritishInvasion.Content.NPCs.Enemies
                         NPC.frame.Y = frameHeight * 16;
                     if(slope > 2.5)
                         NPC.frame.Y = frameHeight * 15;
-                    
-                    
-
                 }
                 
                 if(shootTimer>90){
@@ -127,13 +143,36 @@ namespace BritishInvasion.Content.NPCs.Enemies
             }
         }
 
-        public override void ModifyNPCLoot(NPCLoot loot)
-        {
-        }
-
         public override void HitEffect(NPC.HitInfo hit)
         {
+            if (NPC.life > 0)
+            {
+                for (int i = 0; i < 30; i++)
+                {
+                    int dustType =DustID.Blood;
+
+                    Dust dust = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, dustType);
+                    dust.velocity.X *= (dust.velocity.X + +Main.rand.Next(0, 100) * 0.015f) * hit.HitDirection;
+                    dust.velocity.Y = 3f + Main.rand.Next(-50, 51) * 0.01f;
+                    dust.scale *= 1f + Main.rand.Next(-30, 31) * 0.01f;
+                    dust.noGravity = true;
+                }
+            }
+
+            if (Main.dedServ)
+                return; // don't run on the server
+
+            if (NPC.life <= 0)
+            {
+                var entitySource = NPC.GetSource_Death();
+
+                Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("MusketeerGore1").Type);
+                Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("MusketeerGore2").Type);
+                Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("MusketeerGore3").Type);
+                Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("MusketeerGore2").Type);
+                Gore.NewGore(entitySource, NPC.position, NPC.velocity, Mod.Find<ModGore>("MusketeerGore3").Type);
+            }
         }
     }
-    public class RedcoatMusketeerAlt1 : RedcoatMusketeer{}
+    public class RedcoatMusketeerAlternate : RedcoatMusketeer{}
 }
