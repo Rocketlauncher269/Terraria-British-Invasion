@@ -44,18 +44,15 @@ namespace BritishInvasion.Content.NPCs.Enemies
 
         public override void ModifyNPCLoot(NPCLoot loot)
         {
-            loot.Add(ItemDropRule.Common(ModContent.ItemType<BicorneHat>(), 500));
+            loot.Add(ItemDropRule.Common(ModContent.ItemType<TricorneHat>(), 500));
             loot.Add(ItemDropRule.Common(ModContent.ItemType<RedCoat>(), 500));
             loot.Add(ItemDropRule.Common(ModContent.ItemType<RedcoatTrousers>(), 500));
-            loot.Add(ItemDropRule.Common(ModContent.ItemType<BayonetRifle>(), 500));
-            loot.Add(ItemDropRule.Common(ModContent.ItemType<HandMortar>(), 500));
-            loot.Add(ItemDropRule.Common(ModContent.ItemType<Blunderbuss>(), 500));
-            loot.Add(ItemDropRule.Common(ModContent.ItemType<Fife>(), 500));
-            loot.Add(ItemDropRule.Common(ModContent.ItemType<RottenDentures>(), 500));
+            loot.Add(ItemDropRule.Common(ModContent.ItemType<BayonetRifle>(), 200));
+            loot.Add(ItemDropRule.Common(ModContent.ItemType<Blunderbuss>(), 200));
+            loot.Add(ItemDropRule.Common(ModContent.ItemType<Fife>(), 200));
+            loot.Add(ItemDropRule.Common(ModContent.ItemType<RottenDentures>(), 200));
             loot.Add(ItemDropRule.Common(ItemID.Teacup, 10));
-            loot.Add(ItemDropRule.Common(ItemID.Grenade, 2));
         }
-
         public override void AI()
         {
             NPC.TargetClosest(true);
