@@ -62,7 +62,11 @@ namespace BritishInvasion.Content.NPCs.Enemies
             NPC.TargetClosest(true);
             Player player = Main.player[NPC.target];
             if(Walking||WalkTimer<40){
-                Utility.AIFighter(NPC, ref NPC.ai, player.Center, accelerationFactor: runAwayOrDie ? -1.4f:0.08f, velMax: 2f, maxJumpTilesX: 3, maxJumpTilesY: 4);
+                if(!runAwayOrDie)
+                    Utility.AIFighter(NPC, ref NPC.ai, player.Center, accelerationFactor: 0.08f, velMax: 2f, maxJumpTilesX: 3, maxJumpTilesY: 4);
+                else
+                    Utility.AIFighter(NPC, ref NPC.ai, NPC.Center + ((NPC.Center.X<player.Center.X) ? new Vector2(-100,0) : new Vector2(100,0)), accelerationFactor: 1.4f, velMax: 2f, maxJumpTilesX: 3, maxJumpTilesY: 4);
+     
                 Walking=true;
                 shootTimer=0;
                 if(runAwayOrDie&&Vector2.Distance(player.Center,NPC.Center)>300f)
@@ -85,17 +89,18 @@ namespace BritishInvasion.Content.NPCs.Enemies
                 NPC.velocity.X*=0.9f;
                 
                 shootTimer++;
-                NPC.frame.Y = frameHeight * (14+(int)(Math.Floor((double)(shootTimer/31))));//lazy but it works kind of
+                NPC.frame.Y = frameHeight * (15+(int)(Math.Floor((double)(shootTimer/6))));//lazy but it works kind of
                 
                 if(shootTimer>30){
-                    Projectile p =Projectile.NewProjectileDirect(NPC.GetSource_FromAI(), NPC.Center+((player.Center-NPC.Center).SafeNormalize(Vector2.UnitX)*30f), (player.Center-NPC.Center).SafeNormalize(Vector2.UnitX)*8f, ModContent.ProjectileType<RedcoatGrenadeProj>(), (int)(NPC.damage/2), 0f, -1);
+                    Projectile p =Projectile.NewProjectileDirect(NPC.GetSource_FromAI(), NPC.Center+((player.Center-NPC.Center).SafeNormalize(Vector2.UnitX)*30f), (((player.Center+NPC.Center)/2)-NPC.Center).SafeNormalize(Vector2.UnitX)*8f+new Vector2(0,-4), ModContent.ProjectileType<RedcoatGrenadeProj>(), (int)(NPC.damage/2), 0f, -1);
                     WalkTimer=0;
                     Walking=true;
                     runAwayOrDie=true;
+                    NPC.frame.Y =0;
                 }
                                   
             }
-            NPC.spriteDirection =-NPC.direction*(runAwayOrDie ? -1 : 1);
+            NPC.spriteDirection =-NPC.direction;
         }
 
         private readonly Range walkingFrames = 0..12;
@@ -176,13 +181,17 @@ namespace BritishInvasion.Content.NPCs.Enemies
             Projectile.width = 14;
 			Projectile.height = 14; 
             Projectile.friendly = false;
-            Projectile.hostile = false;
+            Projectile.hostile = true;
             Projectile.timeLeft = 180;
             ProjectileID.Sets.Explosive[Type] = true;
 			Projectile.usesLocalNPCImmunity = true;
 	
         }
-
+        public override void OnHitPlayer(Player target,Player.HurtInfo info)	    
+        {
+            Projectile.timeLeft = 3;
+			Projectile.PrepareBombToBlow();
+        }
         public override void AI() {
 			// If timeLeft is <= 3, then explode the grenade.
 			if (Projectile.owner == Main.myPlayer && Projectile.timeLeft <= 3) {
@@ -198,14 +207,14 @@ namespace BritishInvasion.Content.NPCs.Enemies
 
 			Projectile.ai[0] += 1f;
 			// Wait 15 ticks until applying friction and gravity.
-			if (Projectile.ai[0] > 15f) {
+			if (Projectile.ai[0] > 9f) {
 				// Slow down if on the ground.
 				if (Projectile.velocity.Y == 0f) {
 					Projectile.velocity.X *= 0.95f;
 				}
 
 				// Fall down. Remember, positive Y is down.
-				Projectile.velocity.Y += 0.2f;
+				Projectile.velocity.Y += 0.6f;
 			}
 
 			// Rotate the grenade in the direction it is moving.
